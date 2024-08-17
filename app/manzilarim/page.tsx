@@ -4,11 +4,7 @@ import React, {useState, useEffect} from 'react';
 import Footer from "@/app/Footer/Footer";
 import MapComponent from "@/components/map";
 
-interface LocationProps {
-    cartItemCount: number;
-}
-
-const Page: React.FC<LocationProps> = ({cartItemCount}) => {
+const Page = ({cartItemCount}: { cartItemCount: number }) => {
     return (
         <div>
             <h1>Manzillarim</h1>

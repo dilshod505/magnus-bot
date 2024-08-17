@@ -1,5 +1,5 @@
 import React from 'react';
-import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
+import {GoogleMap, LoadScript, Marker} from '@react-google-maps/api';
 
 const containerStyle = {
     width: '400px',
@@ -7,8 +7,8 @@ const containerStyle = {
 };
 
 const center = {
-    lat: 41.2995, // Toshkentning kenglik koordinatasi
-    lng: 69.2401  // Toshkentning uzunlik koordinatasi
+    lat: 41.2995,
+    lng: 69.2401
 };
 
 const MapComponent: React.FC = () => {
@@ -19,7 +19,7 @@ const MapComponent: React.FC = () => {
                 center={center}
                 zoom={13}
             >
-                <Marker position={center} />
+                <Marker position={center}/>
             </GoogleMap>
         </LoadScript>
     );
