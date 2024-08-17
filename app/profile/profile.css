@@ -1,0 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+
+h3 {
+    font-family: "Montserrat", sans-serif;
+}
+
+
+.hover-item {
+    text-align: center;
+    padding: 20px;
+    background: #f5f5f5;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+}
+
+/*.hover-item:hover {*/
+/*    background-color: blue;*/
+/*    color: white; !* Matn rangini ham o'zgartirishingiz mumkin *!*/
+/*}*/
+
+.text {
+    color: rgb(162,4,240);
+    color: linear-gradient(90deg, rgba(162,4,240,0.9809173669467787) 23%, rgba(7,100,235,0.9641106442577031) 30%, rgba(6,214,145,0.9921218487394958) 55%, rgba(72,25,218,1) 69%, rgba(151,5,183,0.9977240896358543) 83%, rgba(0,212,255,1) 100%);
+}
