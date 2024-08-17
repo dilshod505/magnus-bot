@@ -4,7 +4,7 @@ import React, {useState, useEffect} from 'react';
 import Footer from "@/app/Footer/Footer";
 import MapComponent from "@/components/map";
 
-const Page = ({cartItemCount}: { cartItemCount: number }) => {
+const Page = ({cartItemCount}: { cartItemCount: any }) => {
     return (
         <div>
             <h1>Manzillarim</h1>
@@ -22,5 +22,4 @@ const Page = ({cartItemCount}: { cartItemCount: number }) => {
         </div>
     );
 };
-
 export default Page;
