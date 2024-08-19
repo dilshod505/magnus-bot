@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import "./globals.css"
 import Header from "@/app/Header/header";
 import Products from "@/app/mahsulotlar/Products/product";
 import Footer from "@/app/Footer/Footer";
@@ -9,7 +10,6 @@ export function BoshSahifa() {
     const [cart, setCart] = useState<{ [key: number]: number }>({});
 
     useEffect(() => {
-        // Savatni localStorage'dan yuklash
         const storedCart = localStorage.getItem("cart");
         if (storedCart) {
             setCart(JSON.parse(storedCart));

@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react';
 import {Button, Card, Checkbox, Form, Input, Select} from 'antd';
 import { useRouter } from "next/navigation";
 import Footer from "@/app/Footer/Footer";
-import {FaRegCreditCard} from "react-icons/fa";
+import {FaArrowLeft, FaRegCreditCard} from "react-icons/fa";
 import {AiOutlineFileProtect} from "react-icons/ai";
 import {FaArrowLeftLong} from "react-icons/fa6";
 
@@ -67,11 +67,11 @@ const Page: React.FC = () => {
     return (
         <div className={'flex flex-col items-center justify-between w-full h-screen'}>
             <header className={'flex items-center justify-between w-full bg-white px-3 py-3 shadow-lg'}>
-                <div className={'w-[]'}>
-                    <FaArrowLeftLong className={'size-5'} onClick={() => window.location.href = "/profile"}/>
+                <div>
+                    <FaArrowLeft onClick={() => window.location.href = "/profile"}/>
                 </div>
 
-                <h3 className={"text-2xl"}>Profilim</h3>
+                <h1 className={"text-2xl"}>Profilim</h1>
 
                 <div></div>
             </header>

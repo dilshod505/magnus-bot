@@ -21,6 +21,7 @@ function Catalog() {
     const [error, setError] = useState<string | null>(null);
     const [cart, setCart] = useState<{ [key: number]: number }>({});
     const [showQuantity, setShowQuantity] = useState<{ [key: number]: boolean }>({});
+    const [search, setSearch] = useState<string>(''); // State for search input
 
     useEffect(() => {
         const fetchProducts = async () => {
@@ -65,7 +66,7 @@ function Catalog() {
         setCart((prevCart) => {
             const newQuantity = (prevCart[id] || 0) - 1;
             if (newQuantity <= 0) {
-                const { [id]: _, ...rest } = prevCart; // Remove the product from cart
+                const { [id]: _, ...rest } = prevCart;
                 setShowQuantity((prevShow) => ({ ...prevShow, [id]: false }));
                 return rest;
             }
@@ -73,14 +74,27 @@ function Catalog() {
         });
     };
 
+    const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setSearch(e.target.value);
+    };
+
+    const filteredProducts = products.filter((product) =>
+        product.nameUz.toLowerCase().includes(search.toLowerCase())
+    );
+
     const cartItemCount = Object.values(cart).reduce((sum, quantity) => sum + quantity, 0);
 
     return (
         <div>
             <div className="px-5 py-5 flex items-center justify-between shadow-xl mb-3">
-                <h1 className="text-center text-[12px]]">Barcha mahsulotlar</h1>
+                <h1 className="text-center text-[18px]">Barcha mahsulotlar</h1>
                 <div>
-                    <Search placeholder="Mahsulotlarni qidirish" enterButton />
+                    <Search
+                        placeholder="Mahsulotlarni qidirish"
+                        enterButton
+                        value={search}
+                        onChange={handleSearchChange}
+                    />
                 </div>
             </div>
             {loading ? (
@@ -89,9 +103,11 @@ function Catalog() {
                 </div>
             ) : error ? (
                 <p>Xatolik: {error}</p>
-            ) : (
+            ) : filteredProducts.length === 0 ? (
+                    <img src="/search-vector.svg" alt="search" width={420} className="mx-auto"/>
+                ):(
                 <Row gutter={[16, 16]}>
-                    {products.map((product) => (
+                    {filteredProducts.map((product) => (
                         <Col key={product.id} span={12}>
                             <div className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300 flex flex-col h-full">
                                 <Image

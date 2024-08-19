@@ -104,7 +104,7 @@ const Savat: React.FC = () => {
         router.push('/');
     };
 
-        const totalItems = Object.values(cart).reduce((sum, count) => sum + count, 0);
+    const totalItems = Object.values(cart).reduce((sum, count) => sum + count, 0);
 
     const totalPrice = products.reduce((sum, product) => {
         return sum + (product.price * (cart[product.id] || 0));
@@ -113,18 +113,22 @@ const Savat: React.FC = () => {
     return (
         <div>
             {loading ? (
-                    <div className="flex justify-center items-center h-screen">
-                        <Riple color="#32cd32" size="large" text="" textColor="" />
-                    </div>
-                ) :
-                 totalItems === 0 ? (
-                <img src="/img.png" alt="Cart is empty" className="w-[100%]" />
+                <div className="flex justify-center items-center h-screen">
+                    <Riple color="#32cd32" size="large" text="" textColor="" />
+                </div>
+            ) : totalItems === 0 ? (
+                <div className={"text-center"}>
+                    <img src="/cart.webp" alt="" width={350} className="mx-auto" />
+                    <h1 className={"text-2xl font-bold mb-2"}>Savatda hozircha <br/> mahsulot yo&apos;q</h1>
+                    <span className={"text-gray-500"}>Bosh sahifadagi mahsulotlardan <br/> boshlang yoki kerakli mahsulotni <br/> qidiruv orqali toping</span>
+                </div>
             ) : (
                 <div>
                     <Row gutter={[16, 16]} className={"p-5"}>
                         {products.map((product) => (
                             <Col key={product.id} span={12}>
                                 <Card
+                                    className={"shadow-xl"}
                                     cover={
                                         <img
                                             alt={product.nameUz}
@@ -135,47 +139,45 @@ const Savat: React.FC = () => {
                                 >
                                     <Card.Meta
                                         title={product.nameUz}
-                                        description={`${product.price.toLocaleString()} $`}
+                                        description={`${product.price.toLocaleString()} so'm`}
                                     />
-                                    <div style={{display: 'flex', alignItems: 'center', marginTop: '10px'}}>
+                                    <div style={{ display: 'flex', alignItems: 'center', marginTop: '10px' }}>
                                         <Button
                                             type="default"
                                             shape="circle"
-                                            icon={<span style={{fontSize: '18px'}}>−</span>}
+                                            icon={<span style={{ fontSize: '18px' }}>−</span>}
                                             onClick={() => handleQuantityChange(product.id, -1)}
                                             disabled={cart[product.id] <= 0}
-                                            style={{marginRight: '10px'}}
+                                            style={{ marginRight: '10px' }}
                                         />
                                         <Typography.Text>{cart[product.id]}</Typography.Text>
                                         <Button
                                             type="default"
                                             shape="circle"
-                                            icon={<span style={{fontSize: '18px'}}>+</span>}
+                                            icon={<span style={{ fontSize: '18px' }}>+</span>}
                                             onClick={() => handleQuantityChange(product.id, 1)}
-                                            style={{marginLeft: '10px'}}
+                                            style={{ marginLeft: '10px' }}
                                         />
                                     </div>
                                     <div>
-
                                         {(product.price * cart[product.id]).toFixed(1)}
                                     </div>
-
                                 </Card>
                             </Col>
                         ))}
                     </Row>
                     <div className="flex flex-col min-h-screen">
                         {/* Boshqa kontent */}
-                        <Footer cartItemCount={totalItems}/>
-                        <div style={{position: 'fixed', bottom: '71px', width: '100%', zIndex: '1000'}}
+                        <Footer cartItemCount={totalItems} />
+                        <div style={{ position: 'fixed', bottom: '71px', width: '100%', zIndex: '1000' }}
                              className="flex items-center justify-between bg-gray-100 p-5">
-                            <div style={{fontSize: '18px', fontWeight: 'bold'}}>
+                            <div style={{ fontSize: '18px', fontWeight: 'bold' }}>
                                 Total Price: {totalPrice.toLocaleString()} $
                             </div>
                             <Button
                                 type="primary"
                                 onClick={handleOrder}
-                                style={{padding: "22px 30px", borderRadius: "14px", backgroundColor: '#000000'}}
+                                style={{ padding: "22px 30px", borderRadius: "14px", backgroundColor: '#000000' }}
                             >
                                 <span className={"px-5 pt-5 pb-5"}>Rasmiylashtirish</span>
                             </Button>
@@ -183,7 +185,7 @@ const Savat: React.FC = () => {
                     </div>
                 </div>
             )}
-            <Footer cartItemCount={totalItems}/>
+            <Footer cartItemCount={totalItems} />
         </div>
     );
 };

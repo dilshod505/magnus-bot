@@ -7,6 +7,9 @@ import Footer from "@/app/Footer/Footer";
 import { useRouter } from "next/navigation";
 import "./profile.css";
 import { Riple } from "react-loading-indicators";
+import {FaLocationDot, FaRightLeft, FaRightToBracket} from "react-icons/fa6";
+import {AiFillShopping} from "react-icons/ai";
+import {FaCentercode, FaChevronRight} from "react-icons/fa";
 
 const Profil: React.FC = () => {
     const router = useRouter();
@@ -14,17 +17,16 @@ const Profil: React.FC = () => {
 
     useEffect(() => {
         const timer = setTimeout(() => {
-            setLoading(false); // Set loading to false after a delay
-        }, 500); // Adjust delay as needed (1000ms = 1s)
+            setLoading(false);
+        }, 500);
 
-        return () => clearTimeout(timer); // Clean up the timer on component unmount
+        return () => clearTimeout(timer);
     }, []);
 
     const handleSectionClick = (section: string) => {
         if (section === "buyurtmalarim") {
             router.push("/buyurtmalarim");
         }
-        // Add other sections if needed
     };
 
     const handleLocationClick = () => {
@@ -37,6 +39,15 @@ const Profil: React.FC = () => {
 
     return (
         <div>
+            <header className={"flex items-center py-5 px-5 gap-8"}>
+                <div className={"bg-white px-5 py-4 shadow border-[50%] rounded-[16px]"}>
+                    <h3 className={"text-[20px] font-bold"}>C</h3>
+                </div>
+                <div onClick={() => window.location.href="/user"} className={"cursor-pointer flex items-center gap-4"}>
+                    <h1>Chat #1458</h1>
+                     <span className={"text-gray-400"}><FaChevronRight/></span>
+                </div>
+            </header>
             {loading ? (
                 <div className="flex justify-center items-center h-screen">
                     <Riple color="#32cd32" size="large" text="" textColor="" />
@@ -45,26 +56,32 @@ const Profil: React.FC = () => {
                 <Row gutter={[16, 16]} className={"p-5"}>
                     <Col span={12}>
                         <div className="hover-item text-start" onClick={() => handleSectionClick("buyurtmalarim")}>
-                            <ShoppingCartOutlined className="text-[24px] bg-orange-400 text-white rounded-full p-2" />
-                            <div className="text"><h3 className="text-[16px]">Buyurtmalarim</h3></div>
+                            <AiFillShopping className="text-[36px] bg-orange-400 text-white rounded-full p-2" />
+                           <h3 className=" text text-[16px] pt-2">Buyurtmalarim</h3>
                         </div>
                     </Col>
                     <Col span={12}>
                         <div className="hover-item">
-                            <ShoppingCartOutlined className="text-[24px] bg-orange-400 text-white rounded-full p-2" />
-                            <div className="text"><h3 className="text-[16px]">Oldindan buyurtmalar</h3></div>
+                            <ShoppingCartOutlined className="text-[20px] bg-orange-400 text-white rounded-full p-2" />
+                         <h3 className="text text-[16px] pt-2">Oldindan buyurtmalar</h3>
                         </div>
                     </Col>
                     <Col span={12}>
                         <div className="hover-item" onClick={() => userClick()}>
-                            <UserOutlined className="text-[24px] bg-orange-400 text-white rounded-full p-2" />
-                            <div className="text"><h3 className="text-[16px]">Profilim</h3></div>
+                            <UserOutlined className="text-[20px] bg-orange-400 text-white rounded-full p-2" />
+                            <h3 className="text text-[16px] pt-2">Profilim</h3>
                         </div>
                     </Col>
                     <Col span={12}>
                         <div className="hover-item" onClick={handleLocationClick}>
-                            <HomeOutlined className="text-[24px] bg-orange-400 text-white rounded-full p-2" />
-                            <div className="text"><h3 className="text-[16px]">Manzillarim</h3></div>
+                            <FaLocationDot className="text-[36px] bg-orange-400 text-white rounded-full p-2" />
+                            <h3 className="text text-[16px] pt-2">Manzillarim</h3>
+                        </div>
+                    </Col>
+                    <Col span={12}>
+                        <div className={"hover-item"}>
+                            <FaCentercode  className="text-[36px] bg-orange-400 text-white rounded-full p-2"/>
+                            <h3 className="text text-[16px] pt-2">Proma kodlarim</h3>
                         </div>
                     </Col>
                 </Row>

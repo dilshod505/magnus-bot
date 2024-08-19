@@ -1,13 +1,11 @@
-"use client";
-
-import React, { useState } from 'react';
-import {Menu, Modal, Row, Col, Checkbox, Button, ConfigProvider, message} from 'antd';
-import { createStyles, useTheme } from 'antd-style';
+import React, {useState} from 'react';
+import {Menu, Modal, Row, Col, Checkbox, Button, ConfigProvider} from 'antd';
+import {createStyles, useTheme} from 'antd-style';
 import Image from 'next/image';
-import { Input } from 'antd';
-import {IoSearchSharp} from "react-icons/io5";
+import {Input} from 'antd';
+import Search from 'antd/es/input/Search';
 
-const useStyle = createStyles(({ token }) => ({
+const useStyle = createStyles(({token}) => ({
     'my-modal-body': {
         background: token.blue1,
         padding: token.paddingSM,
@@ -26,6 +24,14 @@ const useStyle = createStyles(({ token }) => ({
     },
 }));
 
+interface Product {
+    id: number;
+    name: string;
+    price: number;
+    image: string;
+    nameUz: string;
+}
+
 const Header = () => {
     const [selectedLanguage, setSelectedLanguage] = useState({
         key: "O'zbekcha",
@@ -37,7 +43,8 @@ const Header = () => {
         "O'zbekcha": true,
         "Русский": false
     });
-
+    const [search, setSearch] = useState<string>(''); // State for search input
+    const [products, setProducts] = useState<Product[]>([]);
 
     const showModal = () => {
         setIsModalVisible(true);
@@ -60,13 +67,13 @@ const Header = () => {
         setCheckedValues(updatedValues);
 
         if (i === "O'zbekcha") {
-            setSelectedLanguage({ key: "O'zbekcha", flag: '/uzb.png' });
+            setSelectedLanguage({key: "O'zbekcha", flag: '/uzb.png'});
         } else if (i === "Русский") {
-            setSelectedLanguage({ key: "Русский", flag: '/russian.png' });
+            setSelectedLanguage({key: "Русский", flag: '/russian.png'});
         }
     };
 
-    const { styles } = useStyle();
+    const {styles} = useStyle();
     const token = useTheme();
 
     const classNames = {
@@ -98,31 +105,44 @@ const Header = () => {
         },
     };
 
+    const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setSearch(e.target.value);
+    };
 
+    const handleSearch = (value: string) => {
+        setSearch(value);
+    };
+
+    const filteredProducts = products.filter((product) =>
+        product.nameUz.toLowerCase().includes(search.toLowerCase())
+    );
 
     return (
-        <header className={`shadow-lg bg-blue-100 px-10 py-5 text-black`}>
+        <header className={`shadow bg-gary-150 px-10 py-5 text-black`}>
             <Row justify="space-between" align="middle" gutter={[16, 16]}>
-                <Col xs={24} sm={8} md={6} lg={4} style={{ textAlign: "left", paddingLeft: "20px" }}>
-                    <h1 className={"text-3xl"}>Qurilish mahsulotlari</h1>
+                <Col xs={24} sm={8} md={6} lg={4} className={"flex items-center justify-between"}>
+                    <div>
+                        <h1 className={"text-3xl"}>Qurilish mahsulotlari</h1>
+                    </div>
+                    <div onClick={showModal} style={{
+                        cursor: 'pointer',
+                        gap: "10px",
+                        display: 'flex',
+                        alignItems: 'center',
+                        backgroundColor: "white",
+                    }}>
+                        <Image src={selectedLanguage.flag} alt={selectedLanguage.key} width={30} height={20}/>
+                    </div>
                 </Col>
                 <Col xs={24} sm={16} md={12} lg={10}>
-                    <Input
-                        prefix={<IoSearchSharp />
-                        }
-                        placeholder="Mahsulotlarni qidirish"
-                        style={{
-                            width: "100%",
-                            maxWidth: "600px",
-                            padding: "10px",
-                            borderRadius: "8px",
-                            border: "1px solid #ddd",
-                        }}
-                    />
-                </Col>
-                <Col xs={24} sm={4} md={3} lg={2} style={{ textAlign: "right", paddingRight: "20px" }}>
-                    <div onClick={showModal} style={{cursor: 'pointer', display: 'flex', alignItems: 'center'}}>
-                        <Image src={selectedLanguage.flag} alt={selectedLanguage.key} width={30} height={20} />
+                    <div>
+                        <Search
+                            placeholder="Mahsulotlarni qidirish"
+                            enterButton
+                            value={search}
+                            onChange={handleSearchChange}
+                            onSearch={handleSearch}
+                        />
                     </div>
                 </Col>
             </Row>
@@ -142,10 +162,10 @@ const Header = () => {
                 >
                     <Menu selectable defaultSelectedKeys={[selectedLanguage.key]}>
                         <Menu.Item key="O'zbekcha">
-                            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                                <div style={{ display: 'flex', alignItems: 'center' }}>
-                                    <Image src="/uzb.png" alt="O'zbekcha" width={20} height={20} />
-                                    <span style={{ marginLeft: '8px' }}>Ozbekcha</span>
+                            <div style={{display: 'flex', alignItems: 'center', justifyContent: 'space-between'}}>
+                                <div style={{display: 'flex', alignItems: 'center'}}>
+                                    <Image src="/uzb.png" alt="O'zbekcha" width={20} height={20}/>
+                                    <span style={{marginLeft: '8px'}}>Ozbekcha</span>
                                 </div>
                                 <Checkbox
                                     checked={checkedValues["O'zbekcha"]}
@@ -154,10 +174,10 @@ const Header = () => {
                             </div>
                         </Menu.Item>
                         <Menu.Item key="Русский">
-                            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                                <div style={{ display: 'flex', alignItems: 'center' }}>
-                                    <Image src="/russian.png" alt="Русский" width={20} height={20} />
-                                    <span style={{ marginLeft: '8px' }}>Русский</span>
+                            <div style={{display: 'flex', alignItems: 'center', justifyContent: 'space-between'}}>
+                                <div style={{display: 'flex', alignItems: 'center'}}>
+                                    <Image src="/russian.png" alt="Русский" width={20} height={20}/>
+                                    <span style={{marginLeft: '8px'}}>Русский</span>
                                 </div>
                                 <Checkbox
                                     checked={checkedValues["Русский"]}
@@ -165,8 +185,8 @@ const Header = () => {
                                 />
                             </div>
                         </Menu.Item>
-                        <div style={{ width: '100%', marginTop: '16px' }}>
-                            <Button type="primary" onClick={handleOk} style={{ width: '100%' }}>
+                        <div style={{width: '100%', marginTop: '16px'}}>
+                            <Button type="primary" onClick={handleOk} style={{width: '100%'}}>
                                 Tanlang
                             </Button>
                         </div>

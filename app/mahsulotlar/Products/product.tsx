@@ -86,6 +86,8 @@ const Products: React.FC<{ onCartUpdate: (cart: { [key: number]: number }) => vo
         setShowQuantity((prev) => ({ ...prev, [productId]: true }));
     };
 
+
+
     const removeProduct = (productId: number) => {
         setCart((prevCart) => {
             const newCart = { ...prevCart };
@@ -102,8 +104,12 @@ const Products: React.FC<{ onCartUpdate: (cart: { [key: number]: number }) => vo
         });
     };
 
+    // const filteredProducts = products.filter((product) =>
+    //     product.nameUz.toLowerCase().includes(search.toLowerCase())
+    // );
+
     return (
-        <div className="w-full p-5 max-h-[120px]">
+        <div className="w-full py-5 mb-[-100px] px-5 max-h-[120px]">
             <Row gutter={[16, 16]}>
                 {categories.map((category) => (
                     <Col
