@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 import Footer from "@/app/Footer/Footer";
 import {FaArrowLeft, FaRegCreditCard} from "react-icons/fa";
 import {AiOutlineFileProtect} from "react-icons/ai";
-import {FaArrowLeftLong} from "react-icons/fa6";
+import "./user.css"
 
 const { Option } = Select;
 
@@ -65,7 +65,7 @@ const Page: React.FC = () => {
     );
 
     return (
-        <div className={'flex flex-col items-center justify-between w-full h-screen'}>
+        <div className={'flex flex-col items-center justify-between w-full h-screen bgw'}>
             <header className={'flex items-center justify-between w-full bg-white px-3 py-3 shadow-lg'}>
                 <div>
                     <FaArrowLeft onClick={() => window.location.href = "/profile"}/>
@@ -101,7 +101,7 @@ const Page: React.FC = () => {
                     name="phone"
                     rules={[{required: true, message: 'Iltimos telefon raqamingizni kiriting'}]}
                 >
-                    <Input addonBefore={prefixSelector} style={{width: '100%'}}/>
+                    <Input addonBefore={prefixSelector} style={{width: '100%', background: 'white'}}/>
                 </Form.Item>
                 <Form.Item>
                     <Select placeholder={"Jinsingizni aniqlang"}>
@@ -110,7 +110,7 @@ const Page: React.FC = () => {
                     </Select>
                 </Form.Item>
                 <Form.Item {...tailFormItemLayout}>
-                    <button type={"submit"} className={'w-full bg-black text-white h-[50px] mb-10 rounded-[16px]'}>
+                    <button type={"submit"} className={'w-full bg-blue-600 text-white h-[50px] mb-10 rounded-[16px]'}>
                         Saqlash
                     </button>
                 </Form.Item>

@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from 'react';
-import { Button, Checkbox, Form, Input, Select } from 'antd';
+import {Button, Checkbox, Col, Form, Input, Select} from 'antd';
 import { useRouter } from "next/navigation";
 import Footer from "@/app/Footer/Footer";
 import { FaRegCreditCard } from "react-icons/fa";
@@ -129,6 +129,8 @@ const Page: React.FC = () => {
 
     return (
         <div>
+            <Col span={24} className={"py-5 px-5 mx-auto"}>
+
             <Form
                 {...formItemLayout}
                 form={form}
@@ -136,10 +138,10 @@ const Page: React.FC = () => {
                 onFinish={onFinish}
                 initialValues={{ prefix: '998' }}
                 style={{ maxWidth: 600 }}
-                className={"py-5 px-5"}
+                className={"py-5 px-5 mx-auto"}
                 scrollToFirstError
             >
-                <h2 className={"text-center text-2xl mb-3"}>Buyurtma qabul qilish</h2>
+                <h2 className={"text-2xl mb-3"}>Buyurtma qabul qilish</h2>
                 <Form.Item
                     name="name"
                     rules={[{ required: true, message: 'Iltimos ismingizni kiriting' }]}
@@ -175,9 +177,6 @@ const Page: React.FC = () => {
                         </Option>
                     </Select>
                 </Form.Item>
-
-
-
                 <Form.Item
                     name="agreement"
                     valuePropName="checked"
@@ -193,12 +192,13 @@ const Page: React.FC = () => {
                         Hammasiga ruxsat berish<a href=""></a>
                     </Checkbox>
                 </Form.Item>
-                <Form.Item {...tailFormItemLayout}>
-                    <Button type="primary" htmlType="submit">
+                <Form.Item {...tailFormItemLayout} className={"flex justify-center"}>
+                    <button type="submit" className={"bg-black text-white p-2 rounded-[14px] w-[380px]"}>
                         Xarid qilish
-                    </Button>
+                    </button>
                 </Form.Item>
             </Form>
+            </Col>
             <Footer cartItemCount={0}/>
         </div>
     );

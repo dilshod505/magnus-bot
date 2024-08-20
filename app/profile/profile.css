@@ -1,9 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
 
-h1,h2,h3,h4,h5,h6,span,p {
+
+
+h1, h2, h3, h4, h5, h6, span, p {
     font-family: "Montserrat", sans-serif;
 }
-
 
 .hover-item {
     font-size: 14px;
@@ -21,6 +22,6 @@ h1,h2,h3,h4,h5,h6,span,p {
 /*}*/
 
 .text {
-    color: rgb(162,4,240);
-    color: linear-gradient(90deg, rgba(162,4,240,0.9809173669467787) 23%, rgba(7,100,235,0.9641106442577031) 30%, rgba(6,214,145,0.9921218487394958) 55%, rgba(72,25,218,1) 69%, rgba(151,5,183,0.9977240896358543) 83%, rgba(0,212,255,1) 100%);
+    color: rgb(162, 4, 240);
+    color: linear-gradient(90deg, rgba(162, 4, 240, 0.9809173669467787) 23%, rgba(7, 100, 235, 0.9641106442577031) 30%, rgba(6, 214, 145, 0.9921218487394958) 55%, rgba(72, 25, 218, 1) 69%, rgba(151, 5, 183, 0.9977240896358543) 83%, rgba(0, 212, 255, 1) 100%);
 }

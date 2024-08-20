@@ -28,7 +28,7 @@ const MapComponent: React.FC = () => {
     const shareLocationTelegram = () => {
         const {lat, lng} = markerPosition;
         const url = `https://maps.google.com/?q=${lat},${lng}`;
-        const telegramUrl = `https://t.me/share/url?url=${encodeURIComponent(url)}&text=My location`;
+        const telegramUrl = `https://t.me/share/url?url=${encodeURIComponent(url)}&text=Joylashuv`;
         window.open(telegramUrl, '_blank');
     };
 
@@ -79,7 +79,7 @@ const MapComponent: React.FC = () => {
                         </div>
 
                         <div>
-                            <h3 className="text-[18px]  mb-4">Share map</h3>
+                            <h3 className="text-[18px]  mb-4">Joylashuvni jonatish</h3>
                             <ul className={"flex items-center gap-[10px]"}>
                                 <li className={"text-2xl"}>
                                     <button onClick={shareLocationTelegram} className="text-blue-500 bg-white rounded-[50%] btn btn-primary">

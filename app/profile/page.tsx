@@ -2,14 +2,14 @@
 
 import React, { useState, useEffect } from 'react';
 import { Col, Row } from "antd";
-import { HomeOutlined, ShoppingCartOutlined, UserOutlined } from "@ant-design/icons";
 import Footer from "@/app/Footer/Footer";
 import { useRouter } from "next/navigation";
 import "./profile.css";
 import { Riple } from "react-loading-indicators";
-import {FaLocationDot, FaRightLeft, FaRightToBracket} from "react-icons/fa6";
+import {FaBagShopping, FaLocationDot, FaRightLeft, FaRightToBracket} from "react-icons/fa6";
 import {AiFillShopping} from "react-icons/ai";
-import {FaCentercode, FaChevronRight} from "react-icons/fa";
+import {FaCentercode, FaChevronRight, FaUser} from "react-icons/fa";
+import {MdOutlineShoppingCart} from "react-icons/md";
 
 const Profil: React.FC = () => {
     const router = useRouter();
@@ -56,19 +56,19 @@ const Profil: React.FC = () => {
                 <Row gutter={[16, 16]} className={"p-5"}>
                     <Col span={12}>
                         <div className="hover-item text-start" onClick={() => handleSectionClick("buyurtmalarim")}>
-                            <AiFillShopping className="text-[36px] bg-orange-400 text-white rounded-full p-2" />
+                            <MdOutlineShoppingCart className="text-[36px] bg-orange-400 text-white rounded-full p-2" />
                            <h3 className=" text text-[16px] pt-2">Buyurtmalarim</h3>
                         </div>
                     </Col>
                     <Col span={12}>
                         <div className="hover-item">
-                            <ShoppingCartOutlined className="text-[20px] bg-orange-400 text-white rounded-full p-2" />
+                            <FaBagShopping  className="text-[36px] bg-orange-400 text-white rounded-full p-2" />
                          <h3 className="text text-[16px] pt-2">Oldindan buyurtmalar</h3>
                         </div>
                     </Col>
                     <Col span={12}>
                         <div className="hover-item" onClick={() => userClick()}>
-                            <UserOutlined className="text-[20px] bg-orange-400 text-white rounded-full p-2" />
+                            <FaUser className="text-[36px] bg-orange-400 text-white rounded-full p-2" />
                             <h3 className="text text-[16px] pt-2">Profilim</h3>
                         </div>
                     </Col>

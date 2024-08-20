@@ -67,9 +67,9 @@ const Buyurtmalarim = () => {
             <div>
                 {filteredOrders.length === 0 ? (
                     <div>
-                        <img src="/box.svg" alt="buyurtmalar yo'q" className={"w-[130px] ms-[170px] mt-[150px]"} />
-                        <h1 className={"text-center text-3xl"}>Sizda buyurtmalar yoq</h1>
-                        <p className={"text-center text-gray-300"}>Bu erda sizning buyurtmalaringiz paydo boladi.</p>
+                        <img src="/box.svg" alt="buyurtmalar yo'q" className={"w-[200px] mx-auto mt-[70px]"} />
+                        <h1 className={"text-center text-3xl"}>Sizda buyurtmalar <br/> yo&apos;q</h1>
+                        <p className={"text-center text-gray-300"}>Bu erda sizning buyurtmalaringiz <br/> paydo bo&apos;ladi.</p>
                     </div>
                 ) : (
                     filteredOrders?.map((order) => (
