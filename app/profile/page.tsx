@@ -23,18 +23,22 @@ const Profil: React.FC = () => {
         return () => clearTimeout(timer);
     }, []);
 
-    const handleSectionClick = (section: string) => {
+    const orderClick = (section: string) => {
         if (section === "buyurtmalarim") {
             router.push("/buyurtmalarim");
         }
     };
 
-    const handleLocationClick = () => {
+    const locationClick = () => {
         router.push("/manzilarim");
     };
 
     const userClick = () => {
         router.push("/user");
+    };
+
+    const promaCodeClick = () => {
+        router.push("/proma-kodlarim");
     };
 
     return (
@@ -55,7 +59,7 @@ const Profil: React.FC = () => {
             ) : (
                 <Row gutter={[16, 16]} className={"p-5"}>
                     <Col span={12}>
-                        <div className="hover-item text-start" onClick={() => handleSectionClick("buyurtmalarim")}>
+                        <div className="hover-item text-start" onClick={() => orderClick("buyurtmalarim")}>
                             <MdOutlineShoppingCart className="text-[36px] bg-orange-400 text-white rounded-full p-2" />
                            <h3 className=" text text-[16px] pt-2">Buyurtmalarim</h3>
                         </div>
@@ -73,13 +77,13 @@ const Profil: React.FC = () => {
                         </div>
                     </Col>
                     <Col span={12}>
-                        <div className="hover-item" onClick={handleLocationClick}>
+                        <div className="hover-item" onClick={locationClick}>
                             <FaLocationDot className="text-[36px] bg-orange-400 text-white rounded-full p-2" />
                             <h3 className="text text-[16px] pt-2">Manzillarim</h3>
                         </div>
                     </Col>
                     <Col span={12}>
-                        <div className={"hover-item"}>
+                        <div className={"hover-item"} onClick={promaCodeClick}>
                             <FaCentercode  className="text-[36px] bg-orange-400 text-white rounded-full p-2"/>
                             <h3 className="text text-[16px] pt-2">Proma kodlarim</h3>
                         </div>

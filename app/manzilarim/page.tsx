@@ -5,7 +5,6 @@ import Footer from "@/app/Footer/Footer";
 import MapComponent from "@/components/map";
 import { Riple } from "react-loading-indicators";
 import { FaArrowLeft } from "react-icons/fa";
-import { useNavigate } from "react-router-dom";
 
 interface PageProps {
     cartItemCount: number;
@@ -13,7 +12,6 @@ interface PageProps {
 
 const Page: React.FC<PageProps> = ({ cartItemCount }) => {
     const [location, setLocation] = useState<GeolocationPosition | null>(null);
-    const navigate = useNavigate(); // React Router hook
 
     useEffect(() => {
         if (navigator.geolocation) {
@@ -29,11 +27,15 @@ const Page: React.FC<PageProps> = ({ cartItemCount }) => {
         }
     }, []);
 
+    const returnProfile = () => {
+        window.location.href = "/profile";
+    };
+
     return (
         <div>
             <header className="flex justify-between items-center py-5 px-5 shadow">
                 <div>
-                    <FaArrowLeft onClick={() => navigate("/profile")} /> {/* React Router-dan foydalanish */}
+                    <FaArrowLeft onClick={returnProfile} />
                 </div>
 
                 <div>
@@ -49,7 +51,7 @@ const Page: React.FC<PageProps> = ({ cartItemCount }) => {
                 </div>
             ) : (
                 <MapComponent />
-                )}
+            )}
 
             <Footer cartItemCount={cartItemCount} />
         </div>

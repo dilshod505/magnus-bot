@@ -104,7 +104,7 @@ function Catalog() {
             ) : error ? (
                 <p>Xatolik: {error}</p>
             ) : filteredProducts.length === 0 ? (
-                    <img src="/search-vector.svg" alt="search" width={420} className="mx-auto"/>
+                    <img src="/search-vector.svg" alt="search" width={420} className="mt-[100px] mx-auto"/>
                 ):(
                 <Row gutter={[16, 16]}>
                     {filteredProducts.map((product) => (
